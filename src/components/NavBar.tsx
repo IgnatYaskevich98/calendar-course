@@ -8,11 +8,10 @@ import {RootState} from "../store/store";
 import {AuthStateType} from "../store/reducers/auth/authReducer";
 import {useActions} from "../hooks/useActions";
 
-export const NavBar = () => {
+export const NavBar = React.memo(() => {
     const router = useHistory()
     const {isAuth, user} = useSelector<RootState, AuthStateType>(state => state.auth)
     const {logout} = useActions()
-
     return (
         <Header>
             <Row justify={'end'}>
@@ -33,4 +32,4 @@ export const NavBar = () => {
             </Row>
         </Header>
     );
-};
+});

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {FC, useCallback, useState} from 'react';
 import {Button, Form, Input} from "antd";
 import {rules} from "../utils/rules";
 import {useSelector} from "react-redux";
@@ -6,17 +6,13 @@ import {RootState} from "../store/store";
 import {AuthStateType} from "../store/reducers/auth/authReducer";
 import {useActions} from "../hooks/useActions";
 
-export const LoginForm = () => {
+export const LoginForm: FC = () => {
     const {isLoading, error} = useSelector<RootState, AuthStateType>(state => state.auth)
     // кастомный хук
     const {login} = useActions()
-
-    const [userName, setUserName] = useState('')
-    const [password, setSetPassword] = useState('')
-
-    const submit = () => {
-        login(userName, password)
-    }
+    const [userName, setUserName] = useState('user')
+    const [password, setSetPassword] = useState('123')
+    const submit = useCallback(() => login(userName, password), [login, userName, password])
     return (
         <Form onFinish={submit}>
             <Form.Item
@@ -37,6 +33,7 @@ export const LoginForm = () => {
                     Submit
                 </Button>
             </Form.Item>
+            <div>login: user, password: 123</div>
         </Form>
     );
 };

@@ -1,4 +1,4 @@
-import {AuthActionEnum, AuthActions} from "./action-creator";
+import {AuthActionEnum, AuthActions} from "./auth-action-creator";
 
 export type IUser = { username: string, password: string }
 export type AuthStateType = {

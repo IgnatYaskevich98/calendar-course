@@ -1,7 +1,6 @@
 import {IUser} from "./authReducer";
-import {AppDispatch} from "../../store";
 import {Dispatch} from "redux";
-import axios from "axios";
+import {usersService} from "../../../api/api";
 
 export enum AuthActionEnum {
     SET_IS_AUTH = 'SET_AUTH',
@@ -9,7 +8,6 @@ export enum AuthActionEnum {
     SET_USER = 'SET_USER',
     SET_IS_LOADING = 'SET_IS_LOADING',
 }
-
 type SetUserAction = { type: AuthActionEnum.SET_USER, payload: IUser }
 type SetIsAuthAction = { type: AuthActionEnum.SET_IS_AUTH, payload: boolean }
 type SetError = { type: AuthActionEnum.SET_ERROR, payload: string }
@@ -26,13 +24,13 @@ export const AuthActionCreators = {
         try {
             dispatch(AuthActionCreators.setIsLoading(true))
             setTimeout(async () => {
-                const response = await axios.get<IUser[]>('./users.json')
+                const response = await usersService.getUsers()
                 const mockUser = response.data.find(user => user.username === userName && user.password === password)
                 if (mockUser) {
                     localStorage.setItem('auth', 'true')
                     localStorage.setItem('userName', mockUser.username)
-                    dispatch(AuthActionCreators.setIsAuth(true))
                     dispatch(AuthActionCreators.setUser(mockUser))
+                    dispatch(AuthActionCreators.setIsAuth(true))
                 } else {
                     dispatch(AuthActionCreators.setError('Некоректный логин или пороль'))
                 }
