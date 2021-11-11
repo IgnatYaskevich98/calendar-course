@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/calendar-course/static/css/main.f7d38b7d.chunk.css",
+    "main.js": "/calendar-course/static/js/main.78333470.chunk.js",
+    "main.js.map": "/calendar-course/static/js/main.78333470.chunk.js.map",
+    "runtime-main.js": "/calendar-course/static/js/runtime-main.99dfca6c.js",
+    "runtime-main.js.map": "/calendar-course/static/js/runtime-main.99dfca6c.js.map",
+    "static/css/2.a95be28f.chunk.css": "/calendar-course/static/css/2.a95be28f.chunk.css",
+    "static/js/2.2887ade3.chunk.js": "/calendar-course/static/js/2.2887ade3.chunk.js",
+    "static/js/2.2887ade3.chunk.js.map": "/calendar-course/static/js/2.2887ade3.chunk.js.map",
+    "index.html": "/calendar-course/index.html",
+    "static/css/2.a95be28f.chunk.css.map": "/calendar-course/static/css/2.a95be28f.chunk.css.map",
+    "static/css/main.f7d38b7d.chunk.css.map": "/calendar-course/static/css/main.f7d38b7d.chunk.css.map",
+    "static/js/2.2887ade3.chunk.js.LICENSE.txt": "/calendar-course/static/js/2.2887ade3.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.99dfca6c.js",
+    "static/css/2.a95be28f.chunk.css",
+    "static/js/2.2887ade3.chunk.js",
+    "static/css/main.f7d38b7d.chunk.css",
+    "static/js/main.78333470.chunk.js"
+  ]
+}
