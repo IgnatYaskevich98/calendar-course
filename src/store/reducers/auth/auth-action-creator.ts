@@ -8,18 +8,14 @@ export enum AuthActionEnum {
     SET_USER = 'SET_USER',
     SET_IS_LOADING = 'SET_IS_LOADING',
 }
-type SetUserAction = { type: AuthActionEnum.SET_USER, payload: IUser }
-type SetIsAuthAction = { type: AuthActionEnum.SET_IS_AUTH, payload: boolean }
-type SetError = { type: AuthActionEnum.SET_ERROR, payload: string }
-type SetIsLoading = { type: AuthActionEnum.SET_IS_LOADING, payload: boolean }
 
-export  type AuthActions = SetIsAuthAction | SetError | SetUserAction | SetIsLoading
+const {SET_IS_AUTH, SET_ERROR, SET_USER, SET_IS_LOADING} = AuthActionEnum
 
 export const AuthActionCreators = {
-    setUser: (user: IUser): SetUserAction => ({type: AuthActionEnum.SET_USER, payload: user}),
-    setIsAuth: (auth: boolean): SetIsAuthAction => ({type: AuthActionEnum.SET_IS_AUTH, payload: auth}),
-    setError: (payload: string): SetError => ({type: AuthActionEnum.SET_ERROR, payload}),
-    setIsLoading: (payload: boolean): SetIsLoading => ({type: AuthActionEnum.SET_IS_LOADING, payload}),
+    setUser: (user: IUser) => ({type: SET_USER, payload: user} as const),
+    setIsAuth: (auth: boolean) => ({type: SET_IS_AUTH, payload: auth} as const),
+    setError: (payload: string) => ({type: SET_ERROR, payload} as const),
+    setIsLoading: (payload: boolean) => ({type: SET_IS_LOADING, payload} as const),
     login: (userName: string, password: string) => async (dispatch: Dispatch) => {
         try {
             dispatch(AuthActionCreators.setIsLoading(true))
@@ -48,3 +44,7 @@ export const AuthActionCreators = {
         dispatch(AuthActionCreators.setIsAuth(false))
     },
 }
+export  type AuthActions = ReturnType<typeof AuthActionCreators.setUser> |
+    ReturnType<typeof AuthActionCreators.setIsAuth> |
+    ReturnType<typeof AuthActionCreators.setError> |
+    ReturnType<typeof AuthActionCreators.setIsLoading>

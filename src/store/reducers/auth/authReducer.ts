@@ -13,15 +13,17 @@ const authState: AuthStateType = {
     isLoading: false,
     error: '',
 }
+const {SET_IS_AUTH, SET_ERROR, SET_USER, SET_IS_LOADING} = AuthActionEnum
+
 export const authReducer = (state: AuthStateType = authState, action: AuthActions): AuthStateType => {
     switch (action.type) {
-        case AuthActionEnum.SET_IS_AUTH:
+        case SET_IS_AUTH:
             return {...state, isAuth: action.payload}
-        case AuthActionEnum.SET_USER:
+        case SET_USER:
             return {...state, user: action.payload}
-        case AuthActionEnum.SET_ERROR:
+        case SET_ERROR:
             return {...state, error: action.payload}
-        case AuthActionEnum.SET_IS_LOADING:
+        case SET_IS_LOADING:
             return {...state, isLoading: action.payload}
         default:
             return state

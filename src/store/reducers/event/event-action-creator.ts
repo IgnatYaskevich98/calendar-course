@@ -4,22 +4,18 @@ import {Dispatch} from "redux";
 import {usersService} from "../../../api/api";
 
 
-export  type  SetGuestsAction = {
-    type: EventActionEnum.SET_GUESTS
-    payload: IUser[]
-}
-export  type  SetEventsAction = {
-    type: EventActionEnum.SET_EVENTS
-    payload: IEventType[]
-}
-export type EventAction = SetGuestsAction | SetEventsAction
+export type EventAction = ReturnType<typeof EventActionCreators.setGuests>
+    | ReturnType<typeof EventActionCreators.setEvents>
+
 export enum EventActionEnum {
     SET_GUESTS = 'SET_GUESTS',
     SET_EVENTS = 'SET_EVENTS',
 }
+
+const {SET_EVENTS, SET_GUESTS} = EventActionEnum
 export const EventActionCreators = {
-    setGuests: (payload: IUser[]): SetGuestsAction => ({type: EventActionEnum.SET_GUESTS, payload}),
-    setEvents: (payload: IEventType[]): SetEventsAction => ({type: EventActionEnum.SET_EVENTS, payload}),
+    setGuests: (payload: IUser[]) => ({type: SET_GUESTS, payload} as const),
+    setEvents: (payload: IEventType[]) => ({type: SET_EVENTS, payload} as const),
     fetchGuests: () => async (dispatch: Dispatch) => {
         try {
             const response = await usersService.getUsers()
